@@ -5,10 +5,10 @@ var page;
 
 describe('TimeTac Test', function(){
     
-    jest.setTimeout(100000);
+    jest.setTimeout(150000);
 
     beforeEach(function(){
-        page = new Page.homepage();
+        page = new Page.homepage('firefox');
         page.visit('https://go.timetac.com');
     });
 
@@ -16,22 +16,14 @@ describe('TimeTac Test', function(){
         page.quit();
     });
     
-    it('test start-timer', async function(){
+    it('Should start-timer', async function(){
         
         page.inputAccount('myinc');
         page.inputUsername('manager');
         page.inputPassword('ipemah');
         page.clickLoginBtn();
-                   
         var a = await page.clickPlayBtn();
-        await page.clickLogoutBtn();
-        //console.log('*-'+ a +'-*');
-        //if(a==0){
-            //assert(a,'Timer failed to start');
-        //}
-        expect(a).toBe(1);
-        return;
-
+        expect(a).toBe('false');
     });
 
 });
